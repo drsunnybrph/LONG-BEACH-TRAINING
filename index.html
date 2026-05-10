@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10k Training Plan — Long Beach Sept 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #09090f;
+    --surface: #111118;
+    --card: #18181f;
+    --card-hover: #1e1e28;
+    --border: #252530;
+    --border-light: #2e2e3e;
+    --orange: #f4631e;
+    --orange-dim: #3a1a0a;
+    --green: #3bba6e;
+    --green-dim: #0d2e1a;
+    --blue: #4a9eff;
+    --blue-dim: #0d1f38;
+    --purple: #9b6dff;
+    --purple-dim: #1e1038;
+    --teal: #2dd4bf;
+    --teal-dim: #0a2825;
+    --amber: #f4a31e;
+    --amber-dim: #2e1e08;
+    --red: #ff5757;
+    --text: #ebebf5;
+    --text-2: #8888a8;
+    --text-3: #44445a;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(244,99,30,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .header-eyebrow {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: .4rem;
+  }
+  .header-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.01em;
+    color: var(--text);
+  }
+  .header-title span { color: var(--orange); }
+  .header-sub {
+    color: var(--text-2);
+    font-size: 14px;
+    margin-top: .6rem;
+  }
+  .goal-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: .25rem;
+  }
+  .goal-chip {
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: .6rem 1rem;
+    text-align: center;
+    min-width: 90px;
+  }
+  .goal-chip-label { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); font-weight: 600; }
+  .goal-chip-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-top: 2px; }
+  .goal-chip-sub { font-size: 11px; color: var(--text-2); margin-top: 1px; }
+
+  /* PHASE BAR */
+  .phase-section { padding: 1.5rem 2rem 0; }
+  .phase-label { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); margin-bottom: .75rem; }
+  .phase-bar { display: flex; gap: 4px; }
+  .phase-seg {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+  }
+  .phase-seg .p-name { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+  .phase-seg .p-dates { font-size: 10px; margin-top: 1px; opacity: .7; }
+  .ph-base { background: var(--green-dim); border-color: rgba(59,186,110,.2); color: var(--green); }
+  .ph-build { background: var(--blue-dim); border-color: rgba(74,158,255,.2); color: var(--blue); }
+  .ph-peak { background: var(--amber-dim); border-color: rgba(244,163,30,.2); color: var(--amber); }
+  .ph-aug { background: var(--teal-dim); border-color: rgba(45,212,191,.2); color: var(--teal); }
+  .ph-taper { background: var(--purple-dim); border-color: rgba(155,109,255,.2); color: var(--purple); }
+  .ph-race { background: var(--orange-dim); border-color: rgba(244,99,30,.3); color: var(--orange); flex: .5; }
+
+  /* MAIN */
+  .main { padding: 1.5rem 2rem 3rem; max-width: 900px; }
+
+  /* SECTION DIVIDER */
+  .s-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 1.5rem 0 .75rem;
+  }
+  .s-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .s-divider.free { color: var(--teal); }
+  .s-divider.free::after { background: rgba(45,212,191,.2); }
+  .s-divider.transition { color: var(--orange); }
+  .s-divider.transition::after { background: rgba(244,99,30,.2); }
+
+  /* WEEK ROW */
+  .week-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    transition: border-color .15s;
+  }
+  .week-row:hover { border-color: var(--border-light); }
+  .week-row.open { border-color: var(--border-light); }
+
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .wk-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--text-3);
+    min-width: 42px;
+    text-transform: uppercase;
+  }
+  .wk-dates {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    flex: 1;
+  }
+  .wk-meta { display: flex; flex-direction: column; gap: 4px; flex: 1.5; }
+  .wk-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+  .badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+  }
+  .b-work { background: var(--green-dim); color: var(--green); border-color: rgba(59,186,110,.2); }
+  .b-off { background: var(--blue-dim); color: var(--blue); border-color: rgba(74,158,255,.2); }
+  .b-free { background: var(--teal-dim); color: var(--teal); border-color: rgba(45,212,191,.2); }
+  .b-transition { background: #1a1a20; color: var(--text-2); border-color: var(--border); }
+  .b-base { background: var(--green-dim); color: var(--green); border-color: rgba(59,186,110,.2); }
+  .b-build { background: var(--blue-dim); color: var(--blue); border-color: rgba(74,158,255,.2); }
+  .b-peak { background: var(--amber-dim); color: var(--amber); border-color: rgba(244,163,30,.2); }
+  .b-taper { background: var(--purple-dim); color: var(--purple); border-color: rgba(155,109,255,.2); }
+  .b-race-week { background: var(--orange-dim); color: var(--orange); border-color: rgba(244,99,30,.3); }
+  .b-now { background: rgba(244,163,30,.15); color: var(--amber); border-color: rgba(244,163,30,.4); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .6; } }
+
+  .wk-events { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .ev-tag {
+    font-size: 10px;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: rgba(244,163,30,.1);
+    color: var(--amber);
+    border: 1px solid rgba(244,163,30,.25);
+    font-weight: 500;
+  }
+
+  .wk-miles {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-2);
+    min-width: 52px;
+    text-align: right;
+    letter-spacing: .03em;
+  }
+  .wk-chevron {
+    color: var(--text-3);
+    font-size: 16px;
+    transition: transform .2s;
+    line-height: 1;
+  }
+  .week-row.open .wk-chevron { transform: rotate(180deg); }
+
+  /* DETAIL */
+  .week-detail {
+    display: none;
+    padding: 0 16px 14px;
+    border-top: 1px solid var(--border);
+    margin: 0 0 0;
+    background: rgba(0,0,0,.2);
+  }
+  .week-row.open .week-detail { display: block; }
+
+  .day-grid { padding-top: 12px; }
+  .day-row {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .day-row:last-of-type { border-bottom: none; }
+  .day-name {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .day-content { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+  .pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 999px;
+    letter-spacing: .02em;
+    border: 1px solid transparent;
+  }
+  .p-lift { background: var(--green-dim); color: var(--green); border-color: rgba(59,186,110,.2); }
+  .p-easy { background: var(--blue-dim); color: var(--blue); border-color: rgba(74,158,255,.2); }
+  .p-tempo { background: var(--orange-dim); color: var(--orange); border-color: rgba(244,99,30,.25); }
+  .p-long { background: var(--amber-dim); color: var(--amber); border-color: rgba(244,163,30,.2); }
+  .p-yoga { background: var(--purple-dim); color: var(--purple); border-color: rgba(155,109,255,.2); }
+  .p-rest { background: #111118; color: var(--text-3); border-color: var(--border); }
+  .p-cross { background: #1e0a1e; color: #d46bff; border-color: rgba(212,107,255,.2); }
+  .p-race { background: var(--orange-dim); color: var(--orange); border-color: rgba(244,99,30,.4); font-size: 12px; font-weight: 700; }
+  .p-drive { background: #111118; color: var(--text-2); border-color: var(--border); }
+  .day-note {
+    font-size: 11px;
+    color: var(--text-3);
+    font-style: italic;
+    width: 100%;
+    padding-left: 1px;
+    margin-top: 1px;
+  }
+
+  .wk-focus {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--border-light);
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  /* RACE CARD */
+  .race-card {
+    background: var(--card);
+    border: 1px solid rgba(244,99,30,.4);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .race-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(244,99,30,.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .race-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--orange);
+    letter-spacing: .02em;
+    margin-bottom: 4px;
+  }
+  .race-sub { font-size: 13px; color: var(--text-2); margin-bottom: 1.2rem; line-height: 1.5; }
+  .race-targets {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 8px;
+  }
+  .race-target {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .rt-val {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: .02em;
+    line-height: 1;
+  }
+  .rt-label { font-size: 10px; color: var(--text-3); margin-top: 4px; letter-spacing: .05em; text-transform: uppercase; font-weight: 600; }
+
+  /* PRINT */
+  @media print {
+    body { background: white; color: #111; }
+    .week-detail { display: block !important; }
+    .wk-chevron { display: none; }
+    .race-card::before { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .header, .phase-section, .main { padding-left: 1rem; padding-right: 1rem; }
+    .header-title { font-size: 2rem; }
+    .race-targets { grid-template-columns: repeat(2, 1fr); }
+    .phase-bar { flex-wrap: wrap; }
+    .goal-chips { gap: 6px; }
+    .goal-chip { min-width: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-eyebrow">10k Training Plan</div>
+      <div class="header-title">Long Beach <span>Sept 5</span></div>
+      <div class="header-sub">29M · 6'2" · 215 lbs · Mile PR 5:44 · Current projection ~1:04 flat</div>
+    </div>
+    <div class="goal-chips">
+      <div class="goal-chip">
+        <div class="goal-chip-label">A Goal</div>
+        <div class="goal-chip-val" style="color:var(--orange);">Sub-57</div>
+        <div class="goal-chip-sub">9:11/mi</div>
+      </div>
+      <div class="goal-chip">
+        <div class="goal-chip-label">B Goal</div>
+        <div class="goal-chip-val" style="color:var(--blue);">Sub-60</div>
+        <div class="goal-chip-sub">9:40/mi</div>
+      </div>
+      <div class="goal-chip">
+        <div class="goal-chip-label">C Goal</div>
+        <div class="goal-chip-val" style="color:var(--green);font-size:1rem;padding-top:4px;">Neg. Split</div>
+        <div class="goal-chip-sub">finish strong</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="phase-section">
+  <div class="phase-label">Phase overview</div>
+  <div class="phase-bar">
+    <div class="phase-seg ph-base"><div class="p-name">Base</div><div class="p-dates">May 13–Jun 2</div></div>
+    <div class="phase-seg ph-build"><div class="p-name">Build</div><div class="p-dates">Jun 10–Jul 14</div></div>
+    <div class="phase-seg ph-peak"><div class="p-name">Peak</div><div class="p-dates">Jul 22–Aug 18</div></div>
+    <div class="phase-seg ph-aug"><div class="p-name">Free Aug</div><div class="p-dates">Aug 1+</div></div>
+    <div class="phase-seg ph-taper"><div class="p-name">Taper</div><div class="p-dates">Aug 19–Sep 4</div></div>
+    <div class="phase-seg ph-race"><div class="p-name">Race</div><div class="p-dates">Sep 5</div></div>
+  </div>
+</div>
+
+<div class="main">
+  <div id="weekList"></div>
+
+  <div class="race-card">
+    <div class="race-title">&#127937; Long Beach 10k — Saturday, September 5</div>
+    <div class="race-sub">Flat course, sea level. Arrive 60 min early. 10 min easy warmup + strides. Start mile 1 at 9:20/mi — conservative — then settle into pace. Push miles 4–6.</div>
+    <div class="race-targets">
+      <div class="race-target"><div class="rt-val" style="color:var(--orange);">9:11/mi</div><div class="rt-label">A goal pace</div></div>
+      <div class="race-target"><div class="rt-val" style="color:var(--blue);">9:40/mi</div><div class="rt-label">B goal pace</div></div>
+      <div class="race-target"><div class="rt-val" style="color:var(--amber);">mi 1–2</div><div class="rt-label">start easy</div></div>
+      <div class="race-target"><div class="rt-val" style="color:var(--green);">mi 4–6</div><div class="rt-label">push here</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const pc = { lift:'p-lift', easy:'p-easy', tempo:'p-tempo', long:'p-long', yoga:'p-yoga', rest:'p-rest', cross:'p-cross', race:'p-race', drive:'p-drive' };
+const phc = { base:'b-base', build:'b-build', peak:'b-peak', taper:'b-taper', 'race-week':'b-race-week' };
+const tc = { work:'b-work', off:'b-off', free:'b-free', transition:'b-transition' };
+const tl = { work:'Work Week', off:'Off Week', free:'Free', transition:'Transition' };
+
+const weeks = [
+  { num:1, type:'work', dates:'May 6–12', phase:'base', miles:'0–3', current:true,
+    events:['May 12: 1:30pm start — skip gym'],
+    focus:'Simi shifts are 3pm–1:30am. Gym is the 1-hr lunch break mid-shift. Mornings before 3pm are free for runs. May 12 is a 1:30pm start — skip gym that day.',
+    days:[
+      {d:'Wed',w:[['easy','Run AM (opt)'],['lift','Lift (lunch)']],n:'chest / tri'},
+      {d:'Thu',w:[['lift','Lift (lunch)']],n:'back / bi'},
+      {d:'Fri',w:[['easy','Run AM (opt)'],['lift','Lift (lunch)']],n:'shoulders'},
+      {d:'Sat',w:[['lift','Lift (lunch)']],n:'upper + accessories — leg ext / calves ok'},
+      {d:'Sun',w:[['rest','Rest']],n:''},
+      {d:'Mon',w:[['lift','Lift (lunch)']],n:'full upper'},
+      {d:'Tue',w:[['rest','Rest']],n:'May 12 — 1:30pm start, skip gym'}
+    ]},
+  { num:2, type:'off', dates:'May 13–19', phase:'base', miles:'16',
+    events:['May 16–17: working 3pm–1:30am'],
+    focus:'May 16–17 you\'re working but mornings are completely free. Yoga and run before noon — plenty of buffer before 3pm.',
+    days:[
+      {d:'Wed',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'~11:00/mi, no pressure'},
+      {d:'Thu',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'conversational pace'},
+      {d:'Fri',w:[['yoga','Yoga 30 min'],['easy','Easy 3 mi']],n:''},
+      {d:'Sat',w:[['easy','Easy 3 mi']],n:'working 3pm — done by noon'},
+      {d:'Sun',w:[['long','Long run 6 mi']],n:'working 3pm — start by 8am, done by 10am'},
+      {d:'Mon',w:[['cross','Cross-train or easy 3 mi']],n:''},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:3, type:'work', dates:'May 20–26', phase:'base', miles:'9',
+    events:[],
+    focus:'Mornings free before 3pm shift. Run AM on upper body days, lift at lunch. Two-a-days without the stress.',
+    days:[
+      {d:'Wed',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'chest / tri'},
+      {d:'Thu',w:[['lift','Lift (lunch)']],n:'back / bi — skip run'},
+      {d:'Fri',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'shoulders'},
+      {d:'Sat',w:[['lift','Lift (lunch)']],n:'upper + accessories'},
+      {d:'Sun',w:[['rest','Rest']],n:''},
+      {d:'Mon',w:[['lift','Lift (lunch)']],n:'full upper'},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:4, type:'off', dates:'May 27–Jun 2', phase:'base', miles:'15',
+    events:['May 28–Jun 1: Working Fairfield (no gym)','Jun 2: Drive Fairfield → Simi'],
+    focus:'Fairfield shifts unpredictable — skip gym entirely. Mornings are yours before the shift. Run only this stretch. Jun 2 is a drive day, just stretch.',
+    days:[
+      {d:'Wed',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'Simi — last normal day'},
+      {d:'Thu',w:[['yoga','Yoga 30 min'],['tempo','Tempo 4 mi']],n:'Fairfield AM — 1 easy + 2 mi at 10:00/mi + 1 easy'},
+      {d:'Fri',w:[['yoga','Yoga 30 min'],['easy','Easy 3 mi']],n:'Fairfield morning run'},
+      {d:'Sat',w:[['long','Long run 6.5 mi']],n:'Fairfield — start 7am'},
+      {d:'Sun',w:[['easy','Easy 3 mi']],n:'Fairfield — keep legs moving'},
+      {d:'Mon',w:[['rest','Rest']],n:'last Fairfield day'},
+      {d:'Tue',w:[['drive','Drive day']],n:'Jun 2 — Fairfield → Simi, stretch only'}
+    ]},
+  { num:5, type:'work', dates:'Jun 3–9', phase:'build', miles:'9',
+    events:[],
+    focus:'Build phase starts. Back in Simi — run AM, lift at lunch. Runs becoming routine.',
+    days:[
+      {d:'Wed',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'chest / tri'},
+      {d:'Thu',w:[['lift','Lift (lunch)']],n:'back / bi'},
+      {d:'Fri',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'shoulders'},
+      {d:'Sat',w:[['lift','Lift (lunch)']],n:'upper + accessories'},
+      {d:'Sun',w:[['rest','Rest']],n:''},
+      {d:'Mon',w:[['lift','Lift (lunch)']],n:'full upper'},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:6, type:'off', dates:'Jun 10–16', phase:'build', miles:'18',
+    events:['Jun 12–14: San Diego'],
+    focus:'SD is a bonus. Mission Bay is flat coastal running — basically a preview of Long Beach conditions. Tempo there is ideal.',
+    days:[
+      {d:'Wed',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'Simi'},
+      {d:'Thu',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'Simi or SD — easy'},
+      {d:'Fri',w:[['yoga','Yoga 30 min'],['tempo','Tempo 4 mi']],n:'SD — 1 easy + 2 mi at 9:45/mi + 1 easy'},
+      {d:'Sat',w:[['long','Long run 7 mi']],n:'SD — Mission Bay, 10:15–10:30/mi'},
+      {d:'Sun',w:[['rest','Full rest']],n:''},
+      {d:'Mon',w:[['cross','Easy 3 mi']],n:''},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:7, type:'work', dates:'Jun 17–23', phase:'build', miles:'9',
+    events:[],
+    focus:'Normal Simi week. Morning runs + lunch lifts. You\'re a runner now.',
+    days:[
+      {d:'Wed',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'chest / tri'},
+      {d:'Thu',w:[['lift','Lift (lunch)']],n:'back / bi'},
+      {d:'Fri',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'shoulders'},
+      {d:'Sat',w:[['lift','Lift (lunch)']],n:'upper + accessories'},
+      {d:'Sun',w:[['rest','Rest']],n:''},
+      {d:'Mon',w:[['lift','Lift (lunch)']],n:'full upper'},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:8, type:'off', dates:'Jun 24–30', phase:'build', miles:'19',
+    events:['Jun 26–29: Working Northbay Fairfield (no gym)'],
+    focus:'Fairfield again — no gym, runs only in mornings. 7.5 mi long run is a real milestone.',
+    days:[
+      {d:'Wed',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'Simi — last day before Fairfield'},
+      {d:'Thu',w:[['yoga','Yoga 30 min'],['tempo','Tempo 4.5 mi']],n:'Fairfield AM — 1 easy + 2.5 mi at 9:30/mi + 1 easy'},
+      {d:'Fri',w:[['yoga','Yoga 30 min'],['easy','Easy 3 mi']],n:'Fairfield morning'},
+      {d:'Sat',w:[['long','Long run 7.5 mi']],n:'Fairfield — start 6:30am before heat'},
+      {d:'Sun',w:[['easy','Easy 3 mi']],n:'Fairfield last day'},
+      {d:'Mon',w:[['rest','Rest']],n:'travel / recovery'},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:9, type:'work', dates:'Jul 1–7', phase:'build', miles:'9',
+    events:['Jul 4 — extra morning time'],
+    focus:'Jul 4 may free up a full morning. Otherwise normal Simi week — run AM, lift at lunch.',
+    days:[
+      {d:'Wed',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'chest / tri'},
+      {d:'Thu',w:[['lift','Lift (lunch)']],n:'back / bi — Jul 3'},
+      {d:'Fri',w:[['rest','Jul 4 — rest or easy walk']],n:''},
+      {d:'Sat',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'shoulders'},
+      {d:'Sun',w:[['rest','Rest']],n:''},
+      {d:'Mon',w:[['lift','Lift (lunch)']],n:'full upper'},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:10, type:'off', dates:'Jul 8–14', phase:'build', miles:'18',
+    events:['Jul 10–12: Las Vegas'],
+    focus:'Vegas in July = 105°F+ by 9am. Run before 6am or use hotel treadmill. Don\'t skip — last build week before peak.',
+    days:[
+      {d:'Wed',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'Simi — normal morning'},
+      {d:'Thu',w:[['easy','Easy 3 mi']],n:'Vegas — treadmill or pre-6am outdoor'},
+      {d:'Fri',w:[['tempo','Tempo 5 mi']],n:'Vegas — 1 easy + 3 mi at 9:15/mi + 1 easy, treadmill fine'},
+      {d:'Sat',w:[['long','Long run 8 mi']],n:'Vegas — pre-dawn or treadmill. First 8-miler.'},
+      {d:'Sun',w:[['rest','Full rest']],n:'drive back or recovery'},
+      {d:'Mon',w:[['easy','Easy 3 mi']],n:'back in Simi'},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:11, type:'work', dates:'Jul 15–21', phase:'peak', miles:'9',
+    events:[],
+    focus:'Peak phase. Recovery work week. Morning runs + lunch lifts. Legs feeling fit.',
+    days:[
+      {d:'Wed',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'chest / tri'},
+      {d:'Thu',w:[['lift','Lift (lunch)']],n:'back / bi'},
+      {d:'Fri',w:[['easy','Run AM 3 mi'],['lift','Lift (lunch)']],n:'shoulders'},
+      {d:'Sat',w:[['lift','Lift (lunch)']],n:'upper + accessories'},
+      {d:'Sun',w:[['rest','Rest']],n:''},
+      {d:'Mon',w:[['lift','Lift (lunch)']],n:'full upper'},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:12, type:'off', dates:'Jul 22–28', phase:'peak', miles:'20',
+    events:['Jul 23–25: San Francisco','Jul 26–28: Working Northbay Fairfield (no gym)','Jul 29 AM: Drive back'],
+    focus:'Last structured off week. SF has elite running routes — Embarcadero, Golden Gate Park. Fairfield stretch runs only. Peak long run this week.',
+    days:[
+      {d:'Wed',w:[['yoga','Yoga 30 min'],['easy','Easy 4 mi']],n:'Simi or drive to SF'},
+      {d:'Thu',w:[['yoga','Yoga 30 min'],['tempo','Tempo 5 mi']],n:'SF — 1 easy + 3 mi at 9:11/mi (A goal pace) + 1 easy'},
+      {d:'Fri',w:[['yoga','Yoga 30 min'],['easy','Easy 3 mi']],n:'SF — coastal easy run'},
+      {d:'Sat',w:[['long','Long run 8.5 mi']],n:'SF/Fairfield — peak run. Golden Gate or Fairfield park.'},
+      {d:'Sun',w:[['easy','Easy 3 mi']],n:'Fairfield — morning only, no gym'},
+      {d:'Mon',w:[['easy','Easy 3 mi']],n:'Fairfield — morning only, no gym'},
+      {d:'Tue',w:[['rest','Rest']],n:'Jul 28 — last Fairfield shift'}
+    ]},
+  { num:13, type:'transition', dates:'Jul 29–31', phase:'peak', miles:'3',
+    events:['Jul 29: Drive Fairfield → Simi','Jul 31: Last day of work — done'],
+    focus:'Drive home Jul 29. Easy shakeout Jul 30. Jul 31 is your last shift. After that — August is all yours.',
+    days:[
+      {d:'Wed',w:[['drive','Drive day']],n:'Jul 29 — Fairfield → Simi, stretch only'},
+      {d:'Thu',w:[['easy','Easy 3 mi']],n:'Jul 30 — morning shakeout'},
+      {d:'Fri',w:[['rest','Rest']],n:'Jul 31 — last day. Done.'}
+    ]},
+  { num:14, type:'free', dates:'Aug 1–5', phase:'peak', miles:'20',
+    events:['Completely free — no work schedule','Full leg workouts back on the table'],
+    focus:'First free days. Train whenever you want. Full leg workouts are back since you\'re not returning to work sweaty.',
+    days:[
+      {d:'Fri',w:[['lift','Full lift incl. legs']],n:'Aug 1 — welcome to free August'},
+      {d:'Sat',w:[['long','Long run 9 mi']],n:'Aug 2 — push last 2 miles at race pace'},
+      {d:'Sun',w:[['rest','Full rest']],n:''},
+      {d:'Mon',w:[['tempo','Tempo 5 mi + strides']],n:'Aug 4 — 1 easy + 3 mi at 9:11/mi + 4×100m strides'},
+      {d:'Tue',w:[['lift','Lift']],n:'Aug 5 — prep for Cabo'}
+    ]},
+  { num:15, type:'free', dates:'Aug 6–9', phase:'peak', miles:'6',
+    events:['Aug 6–9: Cabo'],
+    focus:'Vacation first. Two easy beach runs keep the legs from going cold. No tempo, no pressure.',
+    days:[
+      {d:'Thu',w:[['easy','Easy 3 mi']],n:'Aug 6 — beach run if you feel like it'},
+      {d:'Fri',w:[['rest','Rest / vacation']],n:''},
+      {d:'Sat',w:[['easy','Easy 3 mi']],n:'Aug 8 — morning beach run'},
+      {d:'Sun',w:[['rest','Travel home']],n:'Aug 9'}
+    ]},
+  { num:16, type:'free', dates:'Aug 10–18', phase:'peak', miles:'30',
+    events:['9 free days — biggest training block of the plan'],
+    focus:'5 run days. Full gym access. No schedule constraints. This is where sub-57 gets built.',
+    days:[
+      {d:'Mon',w:[['easy','Easy 4 mi']],n:'Aug 10 — back from Cabo, shake legs out'},
+      {d:'Tue',w:[['lift','Full lift incl. legs']],n:''},
+      {d:'Wed',w:[['tempo','Tempo 5 mi']],n:'Aug 12 — 1 easy + 3 mi at 9:00/mi + 1 easy'},
+      {d:'Thu',w:[['lift','Lift']],n:''},
+      {d:'Fri',w:[['easy','Easy 4 mi']],n:''},
+      {d:'Sat',w:[['long','Long run 9 mi']],n:'Aug 15 — final peak long run, race-effort last 2 miles'},
+      {d:'Sun',w:[['rest','Full rest']],n:''},
+      {d:'Mon',w:[['easy','Easy 4 mi']],n:''},
+      {d:'Tue',w:[['tempo','Tempo 4 mi + strides']],n:'Aug 18 — 1 easy + 2.5 mi at 9:00/mi + 4 strides'}
+    ]},
+  { num:17, type:'free', dates:'Aug 19–25', phase:'taper', miles:'18',
+    events:['Taper — volume drops, sharpness stays'],
+    focus:'Feeling sluggish and undertrained is normal. Your body is loading energy. Trust it.',
+    days:[
+      {d:'Wed',w:[['yoga','Yoga'],['easy','Easy 3 mi']],n:'Aug 19'},
+      {d:'Thu',w:[['lift','Lift — upper only']],n:'protecting legs now'},
+      {d:'Fri',w:[['tempo','Tempo 3 mi + strides']],n:'Aug 21 — 1 easy + 2 mi at 9:11/mi + 4 strides'},
+      {d:'Sat',w:[['long','Long run 6 mi']],n:'Aug 22 — this feels easy. Good.'},
+      {d:'Sun',w:[['rest','Rest']],n:''},
+      {d:'Mon',w:[['easy','Easy 3 mi']],n:''},
+      {d:'Tue',w:[['rest','Rest']],n:''}
+    ]},
+  { num:18, type:'free', dates:'Aug 26–Sep 4', phase:'race-week', miles:'9',
+    events:['Race week','Sep 7: Lease ends — race first, move after'],
+    focus:'Protect the legs. Sleep 8–9 hrs. Carb load Sep 3–4. Lay your kit out the night before.',
+    days:[
+      {d:'Wed',w:[['lift','Lift — upper only']],n:'Aug 26 — last gym session'},
+      {d:'Thu',w:[['easy','Easy 3 mi + strides']],n:'Aug 27 — 4 strides, feel sharp'},
+      {d:'Fri',w:[['rest','Rest']],n:'Aug 28'},
+      {d:'Sat',w:[['rest','Rest']],n:'Aug 29'},
+      {d:'Sun',w:[['easy','Easy 3 mi']],n:'Sep 1 — shakeout, very easy'},
+      {d:'Mon',w:[['rest','Rest']],n:'Sep 2'},
+      {d:'Tue',w:[['rest','Rest']],n:'Sep 3 — carb load starts'},
+      {d:'Wed',w:[['rest','Rest']],n:'Sep 4 — lay kit out, sleep early'},
+      {d:'Thu',w:[['race','RACE DAY — Long Beach 10k']],n:'Sep 5 — sub-57 is the target'}
+    ]}
+];
+
+function buildWeeks() {
+  const list = document.getElementById('weekList');
+  let lastSection = null;
+  weeks.forEach(wk => {
+    const section = wk.type === 'free' ? 'free' : wk.type === 'transition' ? 'transition' : 'scheduled';
+    if (section !== lastSection) {
+      const div = document.createElement('div');
+      div.className = `s-divider${section !== 'scheduled' ? ' ' + section : ''}`;
+      if (section === 'free') div.textContent = '&#9728; August free month — no work schedule';
+      else if (section === 'transition') div.textContent = '&#9873; Final days of work';
+      else div.textContent = 'Scheduled weeks';
+      list.appendChild(div);
+      lastSection = section;
+    }
+    const row = document.createElement('div');
+    row.className = 'week-row';
+    const typeBadge = `<span class="badge ${tc[wk.type]}">${tl[wk.type]}</span>`;
+    const phaseBadge = `<span class="badge ${phc[wk.phase]||'b-base'}">${wk.phase}</span>`;
+    const nowBadge = wk.current ? '<span class="badge b-now">Now</span>' : '';
+    const evTags = (wk.events||[]).map(e=>`<span class="ev-tag">${e}</span>`).join('');
+    row.innerHTML = `
+      <div class="week-header">
+        <span class="wk-num">Wk ${wk.num}</span>
+        <div class="wk-meta">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="wk-dates">${wk.dates}</span>
+            <div class="wk-badges">${typeBadge}${phaseBadge}${nowBadge}</div>
+          </div>
+          ${evTags ? `<div class="wk-events">${evTags}</div>` : ''}
+        </div>
+        <span class="wk-miles">${wk.miles||''} mi</span>
+        <span class="wk-chevron">&#8964;</span>
+      </div>
+      <div class="week-detail">
+        <div class="day-grid">
+          ${wk.days.map(d=>`
+            <div class="day-row">
+              <span class="day-name">${d.d}</span>
+              <div class="day-content">
+                ${d.w.map(([t,l])=>`<span class="pill ${pc[t]}">${l}</span>`).join('')}
+                ${d.n?`<span class="day-note">${d.n}</span>`:''}
+              </div>
+            </div>`).join('')}
+        </div>
+        <div class="wk-focus">${wk.focus}</div>
+      </div>`;
+    row.querySelector('.week-header').addEventListener('click', () => {
+      row.classList.toggle('open');
+    });
+    list.appendChild(row);
+  });
+}
+buildWeeks();
+</script>
+</body>
+</html>
